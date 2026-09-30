@@ -154,6 +154,32 @@
   .paycard p{color:var(--muted);font-size:.96rem;margin:0 0 14px;flex:1}
   .paycard .btn{width:100%;justify-content:center}
   @media (max-width:640px){.paygrid{grid-template-columns:1fr}}
+
+  /* ✨ لمسات جمالية */
+  #progress{position:fixed;top:0;right:0;height:3px;width:0;z-index:50;
+    background:linear-gradient(90deg,var(--teal),#8b6cff,var(--coral));box-shadow:0 0 12px rgba(139,108,255,.7)}
+  .btn-primary{position:relative;overflow:hidden}
+  .btn-primary::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);
+    animation:shine 3.6s ease-in-out infinite}
+  @keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+  .pricebox{position:relative;animation:glow 3s ease-in-out infinite}
+  @keyframes glow{0%,100%{box-shadow:0 0 0 rgba(255,106,69,0),0 10px 30px rgba(255,106,69,.12)}
+    50%{box-shadow:0 0 28px rgba(255,106,69,.35),0 10px 40px rgba(255,207,107,.18)}}
+  #price{background:linear-gradient(90deg,#ffcf6b,#fff3c4,#ffcf6b);background-size:200% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent!important;animation:gold 3s linear infinite}
+  @keyframes gold{to{background-position:-200% 0}}
+  #spot{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0;transition:opacity .4s;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(139,108,255,.13),transparent 60%)}
+  .card{transition:transform .25s ease,border-color .25s,box-shadow .25s}
+  .card:hover{box-shadow:0 18px 50px rgba(37,199,192,.18)}
+  #stickybuy{position:fixed;left:16px;right:16px;bottom:14px;z-index:40;display:none;justify-content:center;
+    transform:translateY(120%);transition:transform .35s ease}
+  #stickybuy.show{transform:none}
+  #stickybuy a{width:100%;max-width:420px;justify-content:center}
+  @media (max-width:640px){#stickybuy{display:flex}}
+  @media (prefers-reduced-motion:reduce){.btn-primary::after,#spot{display:none}}
+  @media (max-width:860px){.author .tags{justify-content:center}}
 </style>
 </head>
 <body>
@@ -162,12 +188,13 @@
 <canvas id="bg3d"></canvas>
 <div class="vignette"></div>
 
+<div id="progress"></div><div id="spot"></div>
 <div class="content">
   <!-- HERO -->
   <header class="hero">
     <div class="eyebrow">كتاب رقمي · تجربة سينمائية</div>
     <h1>مدير السوشيال ميديا بالذكاء الاصطناعي</h1>
-    <p class="sub">من الصفر إلى أول عميل — دليل عملي يحوّلك إلى محترف يدير صفحات الشركات ويجيب دخلاً حقيقياً.</p>
+    <p class="sub">من الصفر إلى أول عميل — دليل عملي متكامل يؤهّلك لإدارة صفحات الشركات باحترافية، وتحقيق دخل حقيقي ومستدام.</p>
     <div class="cta">
       <a href="#order" class="btn btn-primary">احصل على الكتاب</a>
       <a href="#modules" class="btn btn-ghost">استكشف المحتوى</a>
@@ -180,13 +207,13 @@
     <div class="wrap reveal">
       <div class="sec-eyebrow">نظرة</div>
       <h2 class="sec-title">رحلتك تبدأ من هنا</h2>
-      <p class="sec-lead">دليل عملي وأدوات جاهزة تختصر لك الطريق.</p>
+      <p class="sec-lead">منهج عملي وأدوات جاهزة تختصر عليك الطريق نحو الاحتراف.</p>
       <div class="videoslot" id="videoslot" style="margin-top:26px;background:var(--hero) center/cover">
         <!-- VIDEO_INJECT -->
         <div class="ph" style="background:linear-gradient(rgba(5,7,13,.35),rgba(5,7,13,.6));width:100%;height:100%;display:grid;place-items:center;text-align:center">
           <div>
             <div class="big" style="font-size:1.6rem">تعلّم · طبّق · اربح</div>
-            <div>رحلة عملية من الصفر إلى أول عميل يدفع.</div>
+            <div>رحلة عملية منظّمة، من الخطوة الأولى حتى أول عميل يدفع.</div>
           </div>
         </div>
       </div>
@@ -199,15 +226,15 @@
       <div class="reveal">
         <div class="sec-eyebrow">رحلة من ٦ محطات</div>
         <h2 class="sec-title">من أول منشور إلى أول فاتورة</h2>
-        <p class="sec-lead">كل فصل يبني على الذي قبله، وينتهي بخطوة تطبيقية تنفّذها في نفس اليوم.</p>
+        <p class="sec-lead">يُبنى كل فصل على ما سبقه، ويُختتم بخطوة تطبيقية تنفّذها في اليوم نفسه.</p>
       </div>
       <div class="grid">
-        <div class="card reveal"><div class="n">١</div><h3>أساسيات إدارة الصفحات</h3><p>ما الخدمات التي تبيعها للشركات والمحلات، وكيف يقيس العميل نجاحك.</p></div>
-        <div class="card reveal"><div class="n">٢</div><h3>خطة محتوى تشتغل وحدها</h3><p>تقويم شهري بالركائز الأربع يريحك من حيرة «ماذا أنشر اليوم؟».</p></div>
-        <div class="card reveal"><div class="n">٣</div><h3>الكتابة والتصميم بالـ AI</h3><p>أوامر جاهزة تولّد محتوى وتصاميم احترافية في دقائق.</p></div>
-        <div class="card reveal"><div class="n">٤</div><h3>الجدولة والأدوات المجانية</h3><p>تدير عدة صفحات بجهد أقل عبر النشر التلقائي.</p></div>
-        <div class="card reveal"><div class="n">٥</div><h3>التحليل وتقارير العميل</h3><p>تقرأ الأرقام المهمة وتطلّع تقريراً يثبت قيمتك.</p></div>
-        <div class="card reveal"><div class="n">٦</div><h3>أول عميل والتسعير</h3><p>أين تجد العملاء، كيف تكلّمهم، وكيف تسعّر باقاتك.</p></div>
+        <div class="card reveal"><div class="n">١</div><h3>أساسيات إدارة الصفحات</h3><p>الخدمات التي تقدّمها للشركات والمتاجر، والمعايير التي يقيس بها العميل نجاحك.</p></div>
+        <div class="card reveal"><div class="n">٢</div><h3>خطة محتوى تعمل بانتظام</h3><p>تقويم شهري قائم على أربع ركائز يُنهي حيرة «ماذا أنشر اليوم؟».</p></div>
+        <div class="card reveal"><div class="n">٣</div><h3>الكتابة والتصميم بالـ AI</h3><p>أوامر جاهزة لإنتاج محتوى وتصاميم احترافية في دقائق معدودة.</p></div>
+        <div class="card reveal"><div class="n">٤</div><h3>الجدولة والأدوات المجانية</h3><p>إدارة عدة صفحات بجهد أقل عبر النشر المجدول والتلقائي.</p></div>
+        <div class="card reveal"><div class="n">٥</div><h3>التحليل وتقارير العميل</h3><p>قراءة المؤشرات الأساسية، وإعداد تقرير احترافي يُثبت قيمة عملك.</p></div>
+        <div class="card reveal"><div class="n">٦</div><h3>أول عميل والتسعير</h3><p>أين تجد العملاء، وكيف تتواصل معهم، وكيف تُسعّر باقاتك.</p></div>
       </div>
     </div>
   </section>
@@ -216,14 +243,14 @@
   <section class="block" id="package">
     <div class="wrap reveal">
       <div class="sec-eyebrow">الحزمة الكاملة</div>
-      <h2 class="sec-title">ليس كتاباً فقط — عُدّة عمل</h2>
+      <h2 class="sec-title">ليس مجرد كتاب — بل حقيبة عمل متكاملة</h2>
       <div class="inside glass">
-        <div class="row"><span class="tick">✓</span><div><b>الكتاب الرقمي (PDF)</b><span>بتصميم سينمائي، لغة بسيطة ومباشرة.</span></div></div>
-        <div class="row"><span class="tick">✓</span><div><b>قالب جدول محتوى</b><span>Excel جاهز يحسب توازن الركائز.</span></div></div>
-        <div class="row"><span class="tick">✓</span><div><b>نماذج رسائل للعملاء</b><span>عرض، رد، تسليم — تنسخها وتعدّلها.</span></div></div>
-        <div class="row"><span class="tick">✓</span><div><b>قائمة أدوات AI مجانية</b><span>كل أداة وأين تستعملها.</span></div></div>
-        <div class="row"><span class="tick">✓</span><div><b>خطوات تطبيقية بعد كل فصل</b><span>تطبّق فوراً، لا تنسى.</span></div></div>
-        <div class="row"><span class="tick">✓</span><div><b>تحديثات مجانية</b><span>كل ما يتجدد، تصلك النسخة الجديدة.</span></div></div>
+        <div class="row"><span class="tick">✓</span><div><b>الكتاب الرقمي (PDF)</b><span>تصميم أنيق، ولغة واضحة ومباشرة.</span></div></div>
+        <div class="row"><span class="tick">✓</span><div><b>قالب جدول محتوى</b><span>قالب Excel جاهز يحسب توازن محتواك تلقائياً.</span></div></div>
+        <div class="row"><span class="tick">✓</span><div><b>نماذج رسائل للعملاء</b><span>عروض، وردود، ورسائل تسليم — جاهزة للنسخ والتعديل.</span></div></div>
+        <div class="row"><span class="tick">✓</span><div><b>قائمة أدوات AI مجانية</b><span>كل أداة، ومتى وكيف تستخدمها.</span></div></div>
+        <div class="row"><span class="tick">✓</span><div><b>خطوات تطبيقية بعد كل فصل</b><span>تطبيق فوري يرسّخ ما تعلّمته.</span></div></div>
+        <div class="row"><span class="tick">✓</span><div><b>تحديثات مجانية</b><span>تصلك كل نسخة محدَّثة دون أي تكلفة إضافية.</span></div></div>
       </div>
     </div>
   </section>
@@ -232,10 +259,16 @@
   <section class="block">
     <div class="wrap reveal">
       <div class="author glass">
-        <div class="av">ح</div>
+        <div class="av">ع</div>
         <div>
-          <h3>حكم — كاتب الكتاب</h3>
-          <p>مهندس كمبيوتر، اشتغلت سنتين مبرمجاً في شركة نفطية. جمعت في هذا الكتاب الطريق الذي أتمنى لو دلّني عليه أحد من البداية — لتصل أسرع مني.</p>
+          <h3>عبدالحكم — مؤلف الكتاب</h3>
+          <p>صانع محتوى ومدير لوسائل التواصل الاجتماعي، أتولّى إدارة الحضور الرقمي لعدد من الشركات، وأصمّم لها محتوى يعزّز التفاعل ويحوّل المتابعين إلى عملاء. وقد مكّنتني خلفيتي في هندسة الحاسوب من توظيف الذكاء الاصطناعي في كل مرحلة من مراحل العمل: من صياغة الفكرة، إلى التصميم والنشر، وصولاً إلى تقارير الأداء الشهرية.</p>
+          <p>يضمّ هذا الكتاب خلاصة تجربة ميدانية مع عملاء حقيقيين، بعيداً عن التنظير. وقد كتبته ليختصر عليك طريقاً طويلاً من التجربة والخطأ، فتنطلق من حيث انتهيت.</p>
+          <div class="tags" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;justify-content:inherit">
+            <span class="paytag" style="margin:0">🎬 صناعة المحتوى</span>
+            <span class="paytag" style="margin:0">📱 إدارة وسائل التواصل</span>
+            <span class="paytag" style="margin:0">🤖 تطبيقات الذكاء الاصطناعي</span>
+          </div>
         </div>
       </div>
     </div>
@@ -245,16 +278,24 @@
   <section class="block" id="order">
     <div class="wrap reveal">
       <div class="final glass">
-        <h2 class="sec-title">ابدأ اليوم، وجِب أول عميل هذا الشهر</h2>
-        <p>سعر الكتاب <b id="price" style="color:var(--gold)">29.99$ · 199 د.ل</b> — دفعة واحدة، وتحديثات مجانية مدى الحياة.</p>
+        <h2 class="sec-title">ابدأ اليوم، واكسب عميلك الأول هذا الشهر</h2>
+        <div class="pricebox" style="max-width:420px;margin:18px auto 22px;padding:18px 16px;border-radius:18px;border:1px solid rgba(255,106,69,.45);background:linear-gradient(160deg,rgba(255,106,69,.12),rgba(255,207,107,.06));text-align:center">
+          <div style="display:inline-block;padding:5px 14px;border-radius:999px;background:#ff4d4d;color:#fff;font-weight:800;font-size:.85rem;margin-bottom:12px;white-space:nowrap">🔥 عرض الإطلاق — لفترة محدودة</div>
+          <div style="font-size:1rem;margin-bottom:4px">السعر الأصلي:
+            <span style="text-decoration:line-through;text-decoration-color:#ff4d4d;text-decoration-thickness:2px;font-weight:700;font-size:1.15rem;white-space:nowrap"><bdi>475 د.ل</bdi> · <bdi>50$</bdi></span></div>
+          <div style="font-size:1.05rem">السعر الآن فقط:</div>
+          <div id="price" style="color:var(--gold);font-weight:900;font-size:clamp(1.35rem,6.5vw,1.9rem);line-height:1.35"><bdi style="white-space:nowrap">180 د.ل</bdi> · <bdi style="white-space:nowrap">19.99$</bdi></div>
+          <div style="margin-top:8px;font-weight:700;color:#7dffb3">وفّر أكثر من 60% ✨</div>
+          <div style="margin-top:6px;font-size:.88rem;opacity:.8">⏳ عرض لفترة محدودة، يعود بعده السعر إلى 475 د.ل / 50$. دفعة واحدة تشمل التحديثات المجانية مدى الحياة.</div>
+        </div>
         <div class="paygrid">
           <div class="paycard featured">
             <span class="paytag gold">الطريقة الأسرع</span>
             <h3>الطلب عبر بوت تيليجرام</h3>
             <div style="color:var(--muted);font-size:.95rem;line-height:2;margin-bottom:16px">
               <div><b style="color:var(--teal)">1)</b> افتح البوت واضغط «اطلب الكتاب».</div>
-              <div><b style="color:var(--teal)">2)</b> حوّل القيمة وأرسل صورة الإثبات.</div>
-              <div><b style="color:var(--teal)">3)</b> يوصلك الكتاب والقوالب فور التأكيد.</div>
+              <div><b style="color:var(--teal)">2)</b> حوّل قيمة الكتاب، وأرسل صورة إيصال التحويل.</div>
+              <div><b style="color:var(--teal)">3)</b> يصلك الكتاب والقوالب فور تأكيد الدفع.</div>
             </div>
             <a href="https://t.me/Social_media_manager29_bot" target="_blank" rel="noopener" class="btn btn-primary">🛒 اطلب عبر البوت</a>
             <div class="order" style="justify-content:center;margin-top:12px">
@@ -265,7 +306,7 @@
           <div class="paycard">
             <span class="paytag">قريبًا</span>
             <h3>الدفع الإلكتروني بالبطاقة</h3>
-            <p>دفع مباشر ببطاقة Visa أو Mastercard وتحميل تلقائي فوري — قيد التفعيل قريبًا.</p>
+            <p>الدفع المباشر ببطاقة Visa أو Mastercard مع تحميل فوري — تُتاح هذه الخدمة قريباً.</p>
             <a href="#" id="buyBtn" data-checkout="" class="btn btn-ghost">قريبًا</a>
             <div id="buyNote" hidden style="margin-top:10px;color:var(--gold);font-size:.85rem">الدفع الإلكتروني قيد التفعيل — للطلب الآن استخدم البوت.</div>
           </div>
@@ -400,5 +441,27 @@
 })();
 </script>
 
+
+<div id="stickybuy"><a class="btn btn-primary" href="https://t.me/Social_media_manager29_bot" target="_blank" rel="noopener">🛒 اطلب الكتاب الآن — 180 د.ل</a></div>
+
+<script>
+(function(){
+  var bar=document.getElementById('progress'),sb=document.getElementById('stickybuy'),
+      spot=document.getElementById('spot'),order=document.getElementById('order');
+  function onScroll(){
+    var h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';
+    var past=h.scrollTop>window.innerHeight*0.8, atOrder=false;
+    if(order){var r=order.getBoundingClientRect();atOrder=r.top<window.innerHeight&&r.bottom>0}
+    sb.classList.toggle('show',past&&!atOrder);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  if(matchMedia('(hover:hover)').matches){
+    window.addEventListener('pointermove',function(e){
+      spot.style.setProperty('--mx',e.clientX+'px');spot.style.setProperty('--my',e.clientY+'px');spot.style.opacity=1;
+    },{passive:true});
+  }
+})();
+</script>
 </body>
 </html>
